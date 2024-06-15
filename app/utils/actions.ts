@@ -13,3 +13,10 @@ export const SignUp_Action = async (data) => {
   //register with db
   console.log("Registiration Submitted");
 };
+
+export const test_function = async () => {
+  const data = await fetch("https://jsonplaceholder.typicode.com/todos/1").then(
+    (response) => response.json()
+  );
+  return data;
+};
