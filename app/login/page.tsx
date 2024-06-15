@@ -1,8 +1,9 @@
-"use client";
-const Login = () => {
-  const handleoauthclick = () => {
-    console.log("Clicked With O-auth");
-  };
+import { Login_Action } from "../utils/actions";
+
+const Login = async () => {
+  // const handleoauthclick = () => {
+  //   console.log("Clicked With O-auth");
+  // };
   return (
     <div className="border-2 border-white flex flex-col items-center lg:w-[75%] lg:mx-auto">
       <div className="flex items-center justify-center p-6 border-2 border-red-600 w-full">
@@ -23,14 +24,19 @@ const Login = () => {
             <input
               placeholder="Email Address"
               type="email"
+              name="email"
               className="bg-zinc-900 outline-none p-2 text-white rounded-md placeholder:text-zinc-400"
             />
             <input
+              name="password"
               placeholder="Password"
               type="password"
               className="bg-zinc-900 outline-none p-2 text-white rounded-md placeholder:text-zinc-400"
             />
-            <button className="border-2 border-white p-2 rounded-md cursor-pointer text-sm flex justify-between items-center">
+            <button
+              formAction={Login_Action}
+              className="border-2 border-white p-2 rounded-md cursor-pointer text-sm flex justify-between items-center"
+            >
               <div>Login to Your Account</div>
               <div>
                 <svg
@@ -54,19 +60,19 @@ const Login = () => {
         <div className="flex justify-center items-center">\</div>
         <div className="col-span-2 flex flex-col gap-4">
           <button
-            onClick={handleoauthclick}
+            // onClick={handleoauthclick}
             className="border-white border-2 p-2 rounded-md w-full"
           >
             Sign In With Google
           </button>
           <button
-            onClick={handleoauthclick}
+            // onClick={handleoauthclick}
             className="border-white border-2 p-2 rounded-md w-full"
           >
             Sign In With Github
           </button>
           <button
-            onClick={handleoauthclick}
+            // onClick={handleoauthclick}
             className="border-white border-2 p-2 rounded-md w-full"
           >
             Sign In With Facebook

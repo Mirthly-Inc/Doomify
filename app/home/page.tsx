@@ -8,6 +8,7 @@ const Homepage = () => {
           Get Solutions
         </button>
       </div>
+      <div>Hello World</div>
     </div>
   );
 };
