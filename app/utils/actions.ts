@@ -15,8 +15,3 @@ export const SignUp_Action = async (data) => {
   //register with db
   console.log("Registiration Submitted");
 };
-
-export const test_function = async () => {
-  const data = await run("Large Language Models");
-  return data;
-};
