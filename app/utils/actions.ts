@@ -1,3 +1,5 @@
+import { run } from "./ai";
+
 export const Login_Action = async (data) => {
   "use server";
   const email = data.get("email") as string;
@@ -15,8 +17,6 @@ export const SignUp_Action = async (data) => {
 };
 
 export const test_function = async () => {
-  const data = await fetch("https://jsonplaceholder.typicode.com/todos/1").then(
-    (response) => response.json()
-  );
+  const data = await run("Large Language Models");
   return data;
 };
