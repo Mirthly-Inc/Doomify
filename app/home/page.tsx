@@ -2,6 +2,7 @@
 
 import { act, useState } from "react";
 import { run } from "../utils/ai";
+import { Streak } from "@/components/Streak";
 
 const Homepage = () => {
   const [data, setData] = useState("");
@@ -24,7 +25,9 @@ const Homepage = () => {
           </button>
         </div>
       </form>
-      <div>{data}</div>
+      <div className="w-fit">
+        <Streak />
+      </div>
     </div>
   );
 };
