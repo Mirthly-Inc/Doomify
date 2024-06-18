@@ -7,7 +7,7 @@ import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 // const model = genAI.getGenerativeModel({ model: "" });
 
 const model = new ChatGoogleGenerativeAI({
-  model: "gemini-pro",
+  model: "gemini-1.5-flash",
   maxOutputTokens: 2048,
   apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
 });
@@ -30,14 +30,15 @@ const Output_Parser = z.object({
 
 export async function Run_Model(input: String) {
   console.log("Entered Ai Function");
-  // const prompt = `Give a detailed explanation for the word ${input}`;
-  // const result = await model.generateContent(prompt);
-  // const response = await result.response;
+  const prompt = `Give a detailed explanation for the word ${input}`;
+  const result = await model.generateContent(prompt);
+  const response = await result.response;
   const structuredLlm = model.withStructuredOutput(Output_Parser, {
     name: "Output_Parser",
   });
-  const response = await structuredLlm.invoke("What is llm");
+  console.log(structuredLlm);
+  const response = await structuredLlm.invoke("llm");
   console.log("Completed AI Block");
   console.log(response);
-  // return text;
+  return text;
 }
