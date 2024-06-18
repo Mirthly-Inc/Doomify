@@ -1,15 +1,16 @@
 "use client";
 
 import { act, useState } from "react";
-import { run } from "../utils/ai";
+import { Run_Model } from "../utils/ai";
 import { Streak } from "@/components/Streak";
 
 const Homepage = () => {
   const [data, setData] = useState("");
   const response_fetcher = async (event) => {
     event.preventDefault();
-    const Resulted_data = await run("Transformers in ml");
-    setData(Resulted_data);
+    const Resulted_data = await Run_Model("LLM");
+    console.log(Resulted_data);
+    setData(Resulted_data.explanation);
   };
   return (
     <div className="lg:w-[65%] mx-auto pt-3">
