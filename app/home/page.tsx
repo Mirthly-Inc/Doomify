@@ -9,24 +9,41 @@ const sample_streak = [true, false, false, true, false, true];
 const Week = ["M", "T", "W", "T", "F", "S"];
 
 const Homepage = () => {
+  const [inputData, setInputData] = useState("");
   const [data, setData] = useState<Output_Type>({
     example: "",
     recommend: [],
     explanation: "",
   });
+
   const response_fetcher = async (event, inputstring: string) => {
     event.preventDefault();
-    const Resulted_data = await Run_Model(inputstring ? inputstring : "LLM");
+    //check for empty string data --- Need to do---
+    if (inputstring) {
+      setInputData(inputstring);
+    }
+    const Resulted_data = await Run_Model(
+      inputstring ? inputstring : inputData
+    );
     const pared_data = JSON.parse(Resulted_data);
     setData(pared_data);
   };
+  const handleInputChange = (event) => {
+    setInputData(event?.target.value);
+    console.log(inputData);
+  };
+
   return (
     <div className="lg:w-[65%] mx-auto pt-3 flex gap-4">
       <div className="px-4 w-full">
         <div className="pt-6 text-lg pb-4">
           Enter the topic
           <form>
-            <textarea className="w-full border-2 border-white rounded-md bg-transparent outline-none p-2 resize-none"></textarea>
+            <textarea
+              className="w-full border-2 border-white rounded-md bg-transparent outline-none p-2 resize-none"
+              onChange={handleInputChange}
+              value={inputData}
+            ></textarea>
             <div className="flex w-full justify-end pt-2">
               <button
                 className="border-2 bg-white text-black font-semibold font- border-white px-2 py-1 rounded-md"
