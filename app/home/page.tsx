@@ -10,6 +10,7 @@ const Week = ["M", "T", "W", "T", "F", "S"];
 
 const Homepage = () => {
   const [inputData, setInputData] = useState("");
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState<Output_Type>({
     example: "",
     recommend: [],
@@ -18,7 +19,7 @@ const Homepage = () => {
 
   const response_fetcher = async (event, inputstring: string) => {
     event.preventDefault();
-    //check for empty string data --- Need to do---
+    setLoading(true);
     if (inputstring) {
       setInputData(inputstring);
     }
@@ -27,7 +28,9 @@ const Homepage = () => {
     );
     const pared_data = JSON.parse(Resulted_data);
     setData(pared_data);
+    setLoading(false);
   };
+
   const handleInputChange = (event) => {
     setInputData(event?.target.value);
     console.log(inputData);
@@ -49,7 +52,11 @@ const Homepage = () => {
                 className="border-2 bg-white text-black font-semibold font- border-white px-2 py-1 rounded-md"
                 onClick={response_fetcher}
               >
-                Get Solutions
+                {loading ? (
+                  <span>Get Solutions</span>
+                ) : (
+                  <span className="cursor-not-allowed">Getting Solutions</span>
+                )}
               </button>
             </div>
           </form>
