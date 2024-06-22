@@ -10,7 +10,7 @@ const Week = ["M", "T", "W", "T", "F", "S"];
 
 const Homepage = () => {
   const [inputData, setInputData] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState<Output_Type>({
     example: "",
     recommend: [],
@@ -33,7 +33,6 @@ const Homepage = () => {
 
   const handleInputChange = (event) => {
     setInputData(event?.target.value);
-    console.log(inputData);
   };
 
   return (
@@ -53,9 +52,9 @@ const Homepage = () => {
                 onClick={response_fetcher}
               >
                 {loading ? (
-                  <span>Get Solutions</span>
-                ) : (
                   <span className="cursor-not-allowed">Getting Solutions</span>
+                ) : (
+                  <span>Get Solutions</span>
                 )}
               </button>
             </div>
