@@ -27,3 +27,10 @@ export const test = async (email: string, password_hash: string) => {
 
   return inserted_data;
 };
+
+export const login = async (user_pass: string | null) => {
+  const emailid = await newUser.findOne({
+    password: user_pass,
+  });
+  return emailid;
+};
