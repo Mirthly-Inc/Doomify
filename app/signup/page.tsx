@@ -3,6 +3,14 @@ const Login = () => {
   const handleoauthclick = () => {
     console.log("Clicked With O-auth");
   };
+
+  const handlesubmit = async () => {
+    const res = await fetch("http://localhost:3000/api", {
+      headers: { Accept: "application/json", method: "POST" },
+    }).then((data) => data.json());
+    localStorage.setItem("authorization", res);
+  };
+
   return (
     <div className="border-2 border-white flex flex-col items-center lg:w-[75%] lg:mx-auto">
       <div className="flex items-center justify-center p-6 border-2 border-red-600 w-full">
@@ -31,7 +39,7 @@ const Login = () => {
               className="bg-zinc-900 outline-none p-2 text-white rounded-md placeholder:text-zinc-400"
             />
             <button className="border-2 border-white p-2 rounded-md cursor-pointer text-sm flex justify-between items-center">
-              <div>Create a new Account</div>
+              <div onClick={handlesubmit}>Create a new Account</div>
               <div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

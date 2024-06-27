@@ -1,9 +1,20 @@
+"use client";
 import { Login_Action } from "../utils/actions";
 
-const Login = async () => {
+const Login = () => {
   // const handleoauthclick = () => {
   //   console.log("Clicked With O-auth");
   // };
+
+  const handleclick = async () => {
+    const res = await fetch("http://localhost:3000/api", {
+      headers: {
+        Accept: "application/json",
+        method: "POST",
+        authorization: localStorage.gettItem("authorization"),
+      },
+    }).then((data) => data.json());
+  };
   return (
     <div className="border-2 border-white flex flex-col items-center lg:w-[75%] lg:mx-auto">
       <div className="flex items-center justify-center p-6 border-2 border-red-600 w-full">

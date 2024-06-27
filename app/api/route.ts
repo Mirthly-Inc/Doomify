@@ -4,7 +4,7 @@ var jwt = require("jsonwebtoken");
 
 export async function POST(request: Request, response: NextResponse) {
   const req = await request.json();
-  if (localStorage.getItem("authorization")) {
+  if (req.headers.authorization) {
     const auth_token = request.headers.get("authorization");
     const user_hash_db = await login(auth_token);
     if (user_hash_db) {
