@@ -4,14 +4,7 @@ var jwt = require("jsonwebtoken");
 
 export async function POST(request: Request, response: NextResponse) {
   const req = await request.json();
-  if (req.type == "register") {
-    const signedJWT = jwt.sign(req.password, process.env.NEXT_PUBLIC_JWT_KEY);
-    const retured_user = await test(req.email, signedJWT);
-    if (retured_user) {
-      response.cookies.set("authorization", retured_user);
-    }
-    return NextResponse.json({ message: retured_user });
-  } else {
+  if (localStorage.getItem("authorization")) {
     const auth_token = request.headers.get("authorization");
     const user_hash_db = await login(auth_token);
     if (user_hash_db) {
@@ -19,5 +12,12 @@ export async function POST(request: Request, response: NextResponse) {
     } else {
       return NextResponse.json({ message: "You are legit user" });
     }
+  } else {
+    const signedJWT = jwt.sign(req.password, process.env.NEXT_PUBLIC_JWT_KEY);
+    const retured_user = await test(req.email, signedJWT);
+    if (retured_user) {
+      response.cookies.set("authorization", retured_user);
+    }
+    return NextResponse.json({ message: retured_user });
   }
 }
