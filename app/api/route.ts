@@ -4,7 +4,12 @@ var jwt = require("jsonwebtoken");
 
 export async function POST(request: Request, response: NextResponse) {
   const req = await request.json();
-  if (req.headers.authorization) {
+  console.log("first");
+  const loggedin = req.headers?.authorization
+    ? req.headers.authorization
+    : null;
+  console.log(loggedin);
+  if (loggedin) {
     const auth_token = request.headers.get("authorization");
     const user_hash_db = await login(auth_token);
     if (user_hash_db) {
@@ -16,8 +21,11 @@ export async function POST(request: Request, response: NextResponse) {
     const signedJWT = jwt.sign(req.password, process.env.NEXT_PUBLIC_JWT_KEY);
     const retured_user = await test(req.email, signedJWT);
     if (retured_user) {
-      response.cookies.set("authorization", retured_user);
+      response.cookies.set("authorization", signedJWT);
     }
-    return NextResponse.json({ message: retured_user });
+    console.log(signedJWT);
+    console.log(req.email);
+    console.log(req.password);
+    return NextResponse.json({ message: "signedJWT" });
   }
 }

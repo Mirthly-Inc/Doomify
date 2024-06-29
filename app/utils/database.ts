@@ -7,15 +7,17 @@ export async function MongoConnect() {
   return res;
 }
 
-const newUser = mongoose.model("user_datas", {
+const Schema = mongoose.Schema;
+const newUser = new Schema({
   username: String,
   password: String,
 });
 
 export const test = async (email: string, password_hash: string) => {
-  const Already_exists = await newUser.findOne({
+  const Already_exists = await newUser.find({
     username: email,
   });
+
   if (Already_exists) {
     return false;
   }
@@ -29,7 +31,7 @@ export const test = async (email: string, password_hash: string) => {
 };
 
 export const login = async (user_pass: string | null) => {
-  const emailid = await newUser.findOne({
+  const emailid = await newUser.find({
     password: user_pass,
   });
   return emailid;

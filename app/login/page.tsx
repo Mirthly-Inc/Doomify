@@ -1,19 +1,30 @@
 "use client";
+import { useState } from "react";
 import { Login_Action } from "../utils/actions";
 
 const Login = () => {
   // const handleoauthclick = () => {
   //   console.log("Clicked With O-auth");
   // };
+  const [formvalue, setFormvalue] = useState({});
 
-  const handleclick = async () => {
+  const handleChange = (event: any) => {
+    setFormvalue((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+    console.log(formvalue);
+  };
+  const handleclick = async (event) => {
+    event?.preventDefault();
     const res = await fetch("http://localhost:3000/api", {
       headers: {
         Accept: "application/json",
         method: "POST",
-        authorization: localStorage.gettItem("authorization"),
+        // authorization: localStorage.gettItem("authorization"),
       },
     }).then((data) => data.json());
+    console.log(res);
   };
   return (
     <div className="border-2 border-white flex flex-col items-center lg:w-[75%] lg:mx-auto">
@@ -33,22 +44,24 @@ const Login = () => {
         <div className="col-span-2">
           <form className="flex flex-col gap-4">
             <input
+              onChange={handleChange}
               placeholder="Email Address"
               type="email"
               name="email"
               className="bg-zinc-900 outline-none p-2 text-white rounded-md placeholder:text-zinc-400"
             />
             <input
+              onChange={handleChange}
               name="password"
               placeholder="Password"
               type="password"
               className="bg-zinc-900 outline-none p-2 text-white rounded-md placeholder:text-zinc-400"
             />
             <button
-              formAction={Login_Action}
+              // formAction={Login_Action}
               className="border-2 border-white p-2 rounded-md cursor-pointer text-sm flex justify-between items-center"
             >
-              <div>Login to Your Account</div>
+              <div onClick={handleclick}>Login to Your Account</div>
               <div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

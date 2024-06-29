@@ -1,14 +1,28 @@
 "use client";
+
+import { useState } from "react";
+
 const Login = () => {
+  const [formvalue, setFormvalue] = useState({});
   const handleoauthclick = () => {
     console.log("Clicked With O-auth");
   };
+  const handleChange = (event: any) => {
+    setFormvalue((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+    console.log(formvalue);
+  };
 
-  const handlesubmit = async () => {
+  const handlesubmit = async (event: any) => {
+    event.preventDefault();
     const res = await fetch("http://localhost:3000/api", {
       headers: { Accept: "application/json", method: "POST" },
+      body: JSON.stringify(formvalue),
     }).then((data) => data.json());
-    localStorage.setItem("authorization", res);
+    console.log(res);
+    // localStorage.setItem("authorization", res);
   };
 
   return (
@@ -29,11 +43,15 @@ const Login = () => {
         <div className="col-span-2">
           <form className="flex flex-col gap-4">
             <input
+              onChange={handleChange}
+              name="email"
               placeholder="Email Address"
               type="email"
               className="bg-zinc-900 outline-none p-2 text-white rounded-md placeholder:text-zinc-400"
             />
             <input
+              onChange={handleChange}
+              name="password"
               placeholder="Password"
               type="password"
               className="bg-zinc-900 outline-none p-2 text-white rounded-md placeholder:text-zinc-400"

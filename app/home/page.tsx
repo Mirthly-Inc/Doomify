@@ -18,7 +18,7 @@ const Homepage = () => {
     explanation: "",
   });
 
-  const response_fetcher = async (event, inputstring: string) => {
+  const response_fetcher = async (event: any, inputstring: string) => {
     event.preventDefault();
     setLoading(true);
     if (inputstring) {
@@ -32,12 +32,12 @@ const Homepage = () => {
     setLoading(false);
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: any) => {
     setInputData(event?.target.value);
   };
 
   return (
-    <div className="lg:w-[65%] mx-auto pt-3 gap-4">
+    <div className="lg:w-[65%] mx-autogap-4">
       <Navbar />
       <div className="flex gap-4">
         <div className="px-4 w-full">
