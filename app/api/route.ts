@@ -8,7 +8,9 @@ export async function POST(request: Request, response: NextResponse) {
   const loggedin = req.headers?.authorization
     ? req.headers.authorization
     : null;
+
   console.log(loggedin);
+
   if (loggedin) {
     const auth_token = request.headers.get("authorization");
     const user_hash_db = await login(auth_token);
