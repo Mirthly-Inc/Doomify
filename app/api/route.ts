@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { login, test } from "../utils/database";
+
 var jwt = require("jsonwebtoken");
 
 export async function POST(request: Request, response: NextResponse) {
@@ -23,11 +24,11 @@ export async function POST(request: Request, response: NextResponse) {
     const signedJWT = jwt.sign(req.password, process.env.NEXT_PUBLIC_JWT_KEY);
     const retured_user = await test(req.email, signedJWT);
     if (retured_user) {
-      response.cookies.set("authorization", signedJWT);
+      console.log(retured_user);
     }
-    console.log(signedJWT);
-    console.log(req.email);
-    console.log(req.password);
+    // console.log(signedJWT);
+    // console.log(req.email);
+    // console.log(req.password);
     return NextResponse.json({ message: "signedJWT" });
   }
 }
