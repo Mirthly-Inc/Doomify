@@ -37,7 +37,7 @@ const Homepage = () => {
   };
 
   return (
-    <div className="lg:w-[65%] mx-autogap-4">
+    <div className="lg:w-[65%] mx-auto gap-4">
       <Navbar />
       <div className="flex gap-4">
         <div className="px-4 w-full">
@@ -102,7 +102,7 @@ const Homepage = () => {
         </div>
         <div>
           <div>
-            <div className="text-xl font-semibold py-4">Calendar</div>
+            <div className="text-xl font-semibold py-4">Current Streak</div>
             <div className="grid grid-cols-6 gap-4">
               {sample_streak.map((value, index) => (
                 <div

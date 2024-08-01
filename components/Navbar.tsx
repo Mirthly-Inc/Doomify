@@ -1,9 +1,15 @@
 const Navbar = () => {
   return (
-    <div className="flex justify-center items-center w-full border-2 gap-4 border-white  p-3 ">
-      <div>Home</div>
-      <div>About</div>
-      <div>Contact</div>
+    <div className="flex justify-center items-center w-full  gap-4   p-3 ">
+      <div className="px-3 py-1 font-semibold text-lg cursor-pointer border border-neutral-500 rounded-md hover:text-white bg-white text-black hover:bg-black">
+        Home
+      </div>
+      <div className="px-3 py-1 font-semibold text-lg cursor-pointer border border-neutral-500 rounded-md hover:text-white bg-white text-black hover:bg-black">
+        About
+      </div>
+      <div className="px-3 py-1 font-semibold text-lg cursor-pointer border border-neutral-500 rounded-md hover:text-white bg-white text-black hover:bg-black">
+        Contact
+      </div>
     </div>
   );
 };
